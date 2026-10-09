@@ -1,0 +1,17 @@
+{
+  "name": "worker-warm",
+  "version": "0.0.1",
+  "private": true,
+  "description": "moderant warm Worker - keeps Workers AI GPUs hot",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --format=esm --platform=neutral --target=es2022 --outfile=dist/worker.js --external:cloudflare:workers --external:node:*",
+    "dev": "wrangler dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250913.0",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.145.0"
+  }
+}

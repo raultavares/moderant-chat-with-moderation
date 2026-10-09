@@ -1,0 +1,22 @@
+{
+  "name": "@moderant/loadtest",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Local load test harness for moderant chat.",
+  "scripts": {
+    "run": "tsx src/run.ts",
+    "ab": "tsx src/ab-prompt.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "jose": "^6.2.12",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3"
+  }
+}

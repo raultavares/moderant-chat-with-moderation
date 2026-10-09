@@ -1,0 +1,29 @@
+{
+  "name": "@moderant/web",
+  "version": "0.1.0",
+  "description": "Moderant web SDK. Drop-in chat with AI moderation.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean --target es2022",
+    "build:iife": "tsup src/index.ts --format iife --global-name Moderant --clean --target es2022 --out-dir dist-iife",
+    "dev": "tsup src/index.ts --format esm --dts --watch --target es2022",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "typescript": "^5.9.3"
+  },
+  "keywords": ["chat", "moderation", "websocket", "cloudflare", "game", "sdk"],
+  "license": "MIT"
+}

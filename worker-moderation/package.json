@@ -1,0 +1,19 @@
+{
+  "name": "worker-moderation",
+  "version": "0.0.1",
+  "private": true,
+  "description": "moderant moderation Worker - wordlist + AI Gateway + Workers AI",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --format=esm --platform=neutral --target=es2022 --outfile=dist/worker.js --external:cloudflare:workers --external:node:*",
+    "dev": "wrangler dev",
+    "types": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261005.1",
+    "@types/node": "^26.6.3",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.9.3",
+    "wrangler": "4.145.0"
+  },
+  "type": "module"
+}

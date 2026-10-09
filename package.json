@@ -1,0 +1,11 @@
+{
+  "name": "moderant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Embeddable moderated chat for games on Cloudflare",
+  "scripts": {
+    "build": "pnpm -C worker-chat build && pnpm -C worker-moderation build && pnpm -C worker-warm build && pnpm -C worker-admin build",
+    "typecheck": "pnpm -C worker-chat exec tsc --noEmit && pnpm -C worker-moderation exec tsc --noEmit && pnpm -C worker-warm exec tsc --noEmit && pnpm -C worker-admin exec tsc --noEmit"
+  },
+  "packageManager": "pnpm@11.20.0"
+}

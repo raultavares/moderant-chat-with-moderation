@@ -1,0 +1,28 @@
+# Copy to terraform.tfvars and fill in. Never commit terraform.tfvars.
+#
+# CLOUDFLARE_API_TOKEN is read from your shell environment, not this file.
+# Export it first:
+#   export CLOUDFLARE_API_TOKEN=cfat_xxxxxxxxxxxxx
+#
+# Minimum token permissions are listed in README.md ("API token permissions").
+
+account_id     = "<your 32-char Cloudflare account id>"
+zone_id        = "<your 32-char zone id>"
+chat_hostname  = "chat.yourgame.com"
+admin_hostname = "admin.chat.yourgame.com"     # dedicated subdomain; put Access in front in prod
+
+# Games allowed to mint chat tokens. Key = JWT `iss` claim. Each game gets its
+# own keypair at keys/<id>-private.pem. Add or remove games any time and re-apply.
+issuers = {
+  "my-game" = {}
+  # "other-game" = { kid = "other-game-2026-10" }   # kid optional; default "<id>-YYYY-MM"
+}
+
+# Optional overrides (uncomment to change):
+# chat_access_bypass = true   # only if your account blocks hostnames without an Access app
+# clef_threshold = "0.3"
+# rl_per_sub     = { limit = 10,  period = 10 }
+# rl_per_ip      = { limit = 60,  period = 10 }
+# rl_per_room    = { limit = 100, period = 10 }
+# load_wordlist  = true
+# resource_prefix = "moderant"

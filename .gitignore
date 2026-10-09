@@ -1,0 +1,52 @@
+# .gitignore for moderant
+
+# Secrets - never commit
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+dist-iife/
+build/
+*.tsbuildinfo
+
+# Wrangler
+.wrangler/
+.dev.vars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Cryptographic key material - NEVER commit
+keys/
+*.pem
+*.jwk
+
+# Terraform
+# NOTE: .terraform.lock.hcl SHOULD be committed (per Terraform best practice).
+terraform/.terraform/
+terraform/terraform.tfvars
+terraform/*.tfstate
+terraform/*.tfstate.*backup
+terraform/*.tfstate.backup
+*.tfplan
+
+# Local notes, self-hosted test games, loadtest output
+BUILD_LOG.md
+EXEC_SUMMARY.md
+examples/
+packages/loadtest/runs/
