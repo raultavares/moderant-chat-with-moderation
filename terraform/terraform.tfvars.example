@@ -20,6 +20,7 @@ issuers = {
 
 # Optional overrides (uncomment to change):
 # chat_access_bypass = true   # only if your account blocks hostnames without an Access app
+# ai_gateway_log_limit = 10000000   # default 100000 (Free plan cap); raise on Workers Paid
 # clef_threshold = "0.3"
 # rl_per_sub     = { limit = 10,  period = 10 }
 # rl_per_ip      = { limit = 60,  period = 10 }

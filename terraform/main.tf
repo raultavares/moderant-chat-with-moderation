@@ -93,7 +93,7 @@ resource "cloudflare_ai_gateway" "moderation" {
   authentication             = false
   rate_limiting_interval     = 0
   rate_limiting_limit        = 0
-  log_management             = 10000000
+  log_management             = var.ai_gateway_log_limit
   log_management_strategy    = "DELETE_OLDEST"
 }
 

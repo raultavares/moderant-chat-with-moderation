@@ -4,9 +4,9 @@ Full chat infrastructure in a single `terraform apply`. No dashboard clicks afte
 
 ## Prerequisites
 
-- A Cloudflare account on the Workers Paid plan ($5/month base, Workers AI usage billed separately).
-- A domain already on Cloudflare (any zone you own).
-- Locally installed: Terraform `>= 1.6`, Node `>= 22`, pnpm.
+- A domain on Cloudflare. Any plan works, including Free; see [Workers Free or Paid](../README.md#workers-free-or-paid) for the Free plan's daily caps.
+- Terraform `>= 1.6`
+- Node `>= 22` (the build uses pnpm, installed with npm in step 4)
 
 ## 1. Get a Cloudflare API token
 
@@ -32,7 +32,7 @@ The Terraform provider reads this env var automatically. The token never goes in
 ## 3. Configure Terraform variables
 
 ```sh
-git clone <this-repo> moderant
+git clone https://github.com/raultavares/moderant-chat-with-moderation.git moderant
 cd moderant
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 ```
@@ -57,6 +57,7 @@ Everything else has sensible defaults (rate limits, clef threshold, wordlist). O
 ## 4. Build the worker bundles
 
 ```sh
+npm install -g pnpm   # skip if you already have pnpm
 pnpm install -r
 pnpm build
 ```

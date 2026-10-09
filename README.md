@@ -13,10 +13,14 @@ Embeddable, moderated, real-time chat for games. Runs end-to-end on Cloudflare.
 
 ## Deploy (one command)
 
-Prerequisites: a Cloudflare account on Workers Paid, a domain on Cloudflare, Terraform `>= 1.6`, Node `>= 22`, pnpm.
+Prerequisites:
+- A domain on Cloudflare. Any plan works, including Free, on both the zone and the Workers side.
+- Terraform `>= 1.6`
+- Node `>= 22` (the build uses pnpm, installed with npm below)
 
 ```sh
-git clone <this-repo> moderant && cd moderant
+git clone https://github.com/raultavares/moderant-chat-with-moderation.git moderant && cd moderant
+npm install -g pnpm
 pnpm install -r && pnpm build
 
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
@@ -43,6 +47,15 @@ Terraform reads `CLOUDFLARE_API_TOKEN` from your shell. Create a custom API toke
 | Access: Apps and Policies | Edit | Only if `chat_access_bypass = true` |
 
 Creating, scoping, storing, and rotating the token is up to whoever runs the deploy.
+
+### Workers Free or Paid
+
+Everything moderant uses runs on the Workers Free plan: Workers, SQLite-backed Durable Objects, D1, KV, rate limiting bindings, Workers AI, and AI Gateway. Free has daily caps that reset at 00:00 UTC:
+
+- **Workers AI: 10,000 neurons per day.** A message that reaches the AI check costs about 7 neurons, so roughly 1,400 AI-checked messages a day. Shortcut messages (`gg`, `wp`, ...) and wordlist blocks use no AI, and identical messages are served from the AI Gateway cache. Once the allowance is used up, moderation fails closed: every message that needs the AI check is blocked until the reset.
+- **100,000 Worker requests and 100,000 Durable Object requests per day.** Chat connections and chat messages count toward these. Over a cap, requests fail until the reset.
+
+That is plenty to try it out or run a small community. For real traffic, use Workers Paid ($5/month minimum): usage above the included amounts is billed instead of failing.
 
 ## Architecture
 

@@ -106,6 +106,17 @@ variable "rl_per_room" {
   }
 }
 
+variable "ai_gateway_log_limit" {
+  description = "Maximum number of moderation request logs the AI Gateway keeps; oldest are deleted first. Default 100000 fits the Free plan cap. Workers Paid accounts can raise it up to 10000000."
+  type        = number
+  default     = 100000
+
+  validation {
+    condition     = var.ai_gateway_log_limit >= 10000 && var.ai_gateway_log_limit <= 10000000
+    error_message = "ai_gateway_log_limit must be between 10000 and 10000000."
+  }
+}
+
 variable "load_wordlist" {
   description = "If true, download the LDNOOBW English wordlist and load it into the WORDLIST KV namespace. Set false if you plan to supply your own wordlist out of band."
   type        = bool
