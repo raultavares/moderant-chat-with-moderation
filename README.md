@@ -22,11 +22,26 @@ Prerequisites:
 git clone https://github.com/raultavares/moderant-chat-with-moderation.git moderant && cd moderant
 npm install -g pnpm
 pnpm install -r && pnpm build
+```
 
-cp terraform/terraform.tfvars.example terraform/terraform.tfvars
-# edit: account_id, zone_id, chat_hostname, admin_hostname, issuers
+```sh
+cat > terraform/terraform.tfvars <<'EOF'
+account_id     = "<your 32-char Cloudflare account id>"
+zone_id        = "<your 32-char zone id>"
+chat_hostname  = "chat.yourgame.com"
+admin_hostname = "admin.chat.yourgame.com"
 
+issuers = {
+  "my-game" = {}
+}
+EOF
+```
+
+```sh
 export CLOUDFLARE_API_TOKEN=cfat_...
+```
+
+```sh
 cd terraform && terraform init && terraform apply
 ```
 
